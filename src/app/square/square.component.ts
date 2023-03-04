@@ -1,3 +1,4 @@
+import { field } from './../board/board.component';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SquareComponent {
 
-  @Input() value: 'X'|'Y'|undefined = undefined;
+  @Input() value: field = field.empty;
 
 
 

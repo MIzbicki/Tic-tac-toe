@@ -6,7 +6,7 @@
   <div class="grid-container">
     <app-square
       *ngFor="let item of squares; let i= index"
-      [value]="undefined"
+      [value]="squares[i]"
       (click)="makeMove(i)"
       class="child-element">
 
