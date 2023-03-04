@@ -5,36 +5,38 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
+
 export class BoardComponent implements OnInit {
-  squares: any[] = [];
+  squares: X_or_O[] = [];
   xIsNext: boolean = true;
-  winner: string = "";
+  winner: string | null = null;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.newGame();
   }
 
   newGame() {
-    this.squares = Array(9).fill('null');
-    this.winner = "";
+    this.squares = Array(9).fill(null);
+    this.winner = null;
     this.xIsNext = true;
   }
 
   get player() {
-    return this.xIsNext ? 'X' : 'O';
+    return this.xIsNext ? X_or_O.X : X_or_O.O;
   }
 
-  makeMove(id: number) {
-    if (!this.squares[id]) {
-      this.squares.splice(id, 1, this.player);
+  makeMove(idx: number) {
+    if (!this.squares[idx]) {
+      this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
     }
+
     this.winner = this.calculateWinner();
   }
 
-  calculateWinner()
-  {
+  calculateWinner() {
     const lines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -57,5 +59,10 @@ export class BoardComponent implements OnInit {
     }
     return null;
   }
+}
 
+export enum X_or_O {
+  X = 'X',
+  O = 'O',
+  empty = ''
 }
