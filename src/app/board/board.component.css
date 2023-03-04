@@ -17,3 +17,8 @@
 .child-element:nth-child(odd) {
   background-color: lightgray;
 }
+
+.my-center{
+  display: flex;
+  justify-content: center;
+}

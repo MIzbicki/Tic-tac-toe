@@ -1,16 +1,16 @@
-<h1>{{Title}}</h1>
-<h2 *ngIf="!winner">Current Player: {{ player }}</h2>
-<h2 *ngIf="winner">The Winner is: {{ winner }} !!!</h2>
-<button class="btn btn-primary" (click)="newGame()">New Game</button><br>
-{{ winner }}
-<main>
-  <div class="grid-container">
-    <app-square
-      *ngFor="let item of squares; let i = index"
-      [value]="squares[i]"
-      (click)="makeMove(i)"
-      class="child-element">
-
-    </app-square>
-  </div>
-</main>
+<div class="text-center">
+  <h1 class="my-center">{{Title}}</h1>
+  <h2 *ngIf="!winner" class="my-center">Current Player: {{ player }}</h2>
+  <h2 *ngIf="winner" class="my-center">The Winner is: {{ winner }} !!!</h2>
+  <button class="btn btn-primary text-center" (click)="newGame()">New Game</button><br>
+  <main class="my-center">
+    <div class="grid-container">
+      <app-square
+        *ngFor="let item of squares; let i= index"
+        [value]="squares[i]"
+        (click)="makeMove(i)"
+        class="child-element">
+      </app-square>
+    </div>
+  </main>
+</div>
