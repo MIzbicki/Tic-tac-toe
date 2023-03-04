@@ -76,5 +76,6 @@ export class BoardComponent implements OnInit {
 export enum X_or_O {
   X = 'X',
   O = 'O',
-  empty = ''
+  empty = '',
+  endOfGame = ''
 }

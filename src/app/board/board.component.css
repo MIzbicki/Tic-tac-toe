@@ -25,3 +25,11 @@
   display: flex;
   justify-content: center;
 }
+
+button{
+  margin-top: 15px;
+}
+
+h1{
+  font-size: 4em;
+}
