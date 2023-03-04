@@ -2,16 +2,21 @@
   <h1 class="my-center">{{Title}}</h1>
   <h2 *ngIf="!winner" class="my-center">Current Player: {{ player }}</h2>
   <h2 *ngIf="winner" class="my-center">The Winner is: {{ winner }} !!!</h2>
-  <button class="btn btn-primary text-center" (click)="newGame()">New Game</button><br>
   <main class="my-center">
     <div class="grid-container">
       <app-square
         *ngFor="let item of squares; let i= index"
         [value]="squares[i]"
         (click)="makeMove(i)"
+        (mouseover)="ifAddHoverClass(i)"
+        (mouseleave)="removeAddHoverClass(i)"
         class="child-element"
-        [ngClass]="isClicked(i) ? '' : 'cursor-pointer'">
+        [ngClass]="[
+        isClicked(i) ? '' : 'cursor-pointer',
+        shouldBeHighlighted(i) ? 'my-hover' : ''
+        ]">
       </app-square>
     </div>
   </main>
+  <button class="btn btn-primary text-center" (click)="newGame()">New Game</button><br>
 </div>

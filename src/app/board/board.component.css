@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.child-element:nth-child(odd) {
+.my-hover{
   background-color: lightgray;
 }
 
