@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
   }
 
   newGame() {
-    this.squares = Array(9).fill(null);
+    this.squares = Array(9).fill(X_or_O.empty);
     this.winner = null;
     this.xIsNext = true;
   }
@@ -27,6 +27,17 @@ export class BoardComponent implements OnInit {
   get player() {
     return this.xIsNext ? X_or_O.X : X_or_O.O;
   }
+
+  isClicked(index: number){
+    if(this.squares[index] == X_or_O.empty)
+    {
+      return false;
+    }else
+    {
+      return true;
+    }
+  }
+
 
   makeMove(idx: number) {
     if (!this.squares[idx]) {
@@ -65,5 +76,5 @@ export class BoardComponent implements OnInit {
 export enum X_or_O {
   X = 'X',
   O = 'O',
-  empty = 'puste'
+  empty = ''
 }

@@ -10,6 +10,4 @@ export class SquareComponent {
 
   @Input() value: X_or_O = X_or_O.empty;
 
-
-
 }
