@@ -19,7 +19,7 @@ export class BoardComponent implements OnInit {
   }
 
   newGame() {
-    this.squares = Array(9).fill(null);
+    this.squares = Array(9).fill(X_or_O.empty);
     this.winner = null;
     this.xIsNext = true;
   }
@@ -28,6 +28,39 @@ export class BoardComponent implements OnInit {
     return this.xIsNext ? X_or_O.X : X_or_O.O;
   }
 
+  isClicked(index: number): boolean{
+    if(this.squares[index] == X_or_O.empty)
+    {
+      return false;
+    }else
+    {
+      return true;
+    }
+  }
+
+  hoverArray: boolean[] = Array(9).fill(false);;
+  ifAddHoverClass(index: number){
+    if (this.squares[index] == X_or_O.empty)
+    {
+      this.hoverArray[index] = true;
+    }
+  }
+
+  removeAddHoverClass(index: number){
+    this.hoverArray[index] = false;
+  }
+
+  shouldBeHighlighted(index:number){
+    if(this.hoverArray[index] == true)
+    {
+      return true;
+    }else
+    {
+      return false;
+    }
+  }
+
+
   makeMove(idx: number) {
     if (!this.squares[idx]) {
       this.squares.splice(idx, 1, this.player);
@@ -35,6 +68,15 @@ export class BoardComponent implements OnInit {
     }
 
     this.winner = this.calculateWinner();
+  }
+
+  blockRestOfFields(){
+    for (let i = 0; i < this.squares.length; i++) {
+      if(this.squares[i] == X_or_O.empty)
+      {
+        this.squares[i]=X_or_O.endOfGame;
+      }
+    }
   }
 
   calculateWinner() {
@@ -55,6 +97,7 @@ export class BoardComponent implements OnInit {
         this.squares[a] === this.squares[b] &&
         this.squares[a] === this.squares[c]
       ) {
+        this.blockRestOfFields();
         return this.squares[a];
       }
     }
@@ -65,5 +108,6 @@ export class BoardComponent implements OnInit {
 export enum X_or_O {
   X = 'X',
   O = 'O',
-  empty = 'puste'
+  empty = '',
+  endOfGame = '-'
 }
