@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class BoardComponent implements OnInit {
+  Title = "Tic-tac-toe";
   squares: X_or_O[] = [];
   xIsNext: boolean = true;
   winner: string | null = null;
@@ -64,5 +65,5 @@ export class BoardComponent implements OnInit {
 export enum X_or_O {
   X = 'X',
   O = 'O',
-  empty = ''
+  empty = 'puste'
 }
