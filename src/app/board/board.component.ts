@@ -13,7 +13,7 @@ export class BoardComponent implements OnInit {
   winner: string | null = null;
   hoverArray: boolean[] = Array(9).fill(false);
   winningFields: boolean[] = Array(9).fill(false);
-
+  moveCounter: number = 0;
 
   constructor() { }
 
@@ -26,6 +26,7 @@ export class BoardComponent implements OnInit {
     this.winner = null;
     this.xIsNext = true;
     this.winningFields = Array(9).fill(false);
+    this.moveCounter = 0;
   }
 
   get player() {
@@ -79,6 +80,7 @@ export class BoardComponent implements OnInit {
     if (!this.squares[idx]) {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
+      this.moveCounter++;
     }
 
     this.winner = this.calculateWinner();
