@@ -12,6 +12,7 @@ export class BoardComponent implements OnInit {
   xIsNext: boolean = true;
   winner: string | null = null;
   hoverArray: boolean[] = Array(9).fill(false);
+  winningFields: boolean[] = Array(9).fill(false);
 
 
   constructor() { }
@@ -24,6 +25,7 @@ export class BoardComponent implements OnInit {
     this.squares = Array(9).fill(X_or_O.empty);
     this.winner = null;
     this.xIsNext = true;
+    this.winningFields = Array(9).fill(false);
   }
 
   get player() {
@@ -54,6 +56,16 @@ export class BoardComponent implements OnInit {
 
   shouldBeHighlighted(index:number){
     if(this.hoverArray[index] == true)
+    {
+      return true;
+    }else
+    {
+      return false;
+    }
+  }
+
+  isWinning(index:number){
+    if(this.winningFields[index] == true)
     {
       return true;
     }else
@@ -99,7 +111,9 @@ export class BoardComponent implements OnInit {
         this.squares[a] === this.squares[b] &&
         this.squares[a] === this.squares[c]
       ) {
-
+        this.winningFields[a] = true;
+        this.winningFields[b] = true;
+        this.winningFields[c] = true;
         this.blockRestOfFields();
         return this.squares[a];
       }

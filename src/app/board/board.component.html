@@ -13,7 +13,8 @@
         class="child-element"
         [ngClass]="[
         isClicked(i) ? '' : 'cursor-pointer',
-        shouldBeHighlighted(i) ? 'my-hover' : ''
+        shouldBeHighlighted(i) ? 'my-hover' : '',
+        isWinning(i) ? 'winning-background' : ''
         ]">
       </app-square>
     </div>

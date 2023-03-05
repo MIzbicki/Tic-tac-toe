@@ -33,3 +33,7 @@ button{
 h1{
   font-size: 4em;
 }
+
+.winning-background{
+  background-color:rgb(51, 255, 0);
+}
