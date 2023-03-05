@@ -11,6 +11,8 @@ export class BoardComponent implements OnInit {
   squares: X_or_O[] = [];
   xIsNext: boolean = true;
   winner: string | null = null;
+  hoverArray: boolean[] = Array(9).fill(false);
+
 
   constructor() { }
 
@@ -38,7 +40,7 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  hoverArray: boolean[] = Array(9).fill(false);;
+
   ifAddHoverClass(index: number){
     if (this.squares[index] == X_or_O.empty)
     {
@@ -97,6 +99,7 @@ export class BoardComponent implements OnInit {
         this.squares[a] === this.squares[b] &&
         this.squares[a] === this.squares[c]
       ) {
+
         this.blockRestOfFields();
         return this.squares[a];
       }
