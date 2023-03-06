@@ -9,14 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class BoardComponent implements OnInit {
   Title = "Tic-tac-toe";
   squares: X_or_O[] = [];
-  xIsNext: boolean = true;
+  xIsNext = true;
   winner: string | null = null;
   hoverArray: boolean[] = Array(9).fill(false);
   winningFields: boolean[] = Array(9).fill(false);
-  moveCounter: number = 0;
+  moveCounter = 0;
   subheadingSwitch: subheadingEnum = subheadingEnum.currentPlayer;
-
-  constructor() { }
 
   ngOnInit() {
     this.newGame();
