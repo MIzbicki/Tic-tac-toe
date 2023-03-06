@@ -9,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class BoardComponent implements OnInit {
   Title = "Tic-tac-toe";
   squares: X_or_O[] = [];
-  xIsNext: boolean = true;
+  xIsNext = true;
   winner: string | null = null;
-
-  constructor() { }
+  hoverArray: boolean[] = Array(9).fill(false);
+  winningFields: boolean[] = Array(9).fill(false);
+  moveCounter = 0;
+  subheadingSwitch: subheadingEnum = subheadingEnum.currentPlayer;
 
   ngOnInit() {
     this.newGame();
@@ -22,6 +24,9 @@ export class BoardComponent implements OnInit {
     this.squares = Array(9).fill(X_or_O.empty);
     this.winner = null;
     this.xIsNext = true;
+    this.winningFields = Array(9).fill(false);
+    this.moveCounter = 0;
+    this.subheadingSwitch = subheadingEnum.currentPlayer;
   }
 
   get player() {
@@ -38,7 +43,7 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  hoverArray: boolean[] = Array(9).fill(false);;
+
   ifAddHoverClass(index: number){
     if (this.squares[index] == X_or_O.empty)
     {
@@ -60,14 +65,33 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  isWinning(index:number){
+    if(this.winningFields[index] == true)
+    {
+      return true;
+    }else
+    {
+      return false;
+    }
+  }
+
+
+  isDrawCheck(){
+    if(!this.winner && this.moveCounter == 9)
+    {
+      this.subheadingSwitch = subheadingEnum.draw;
+    }
+  }
 
   makeMove(idx: number) {
     if (!this.squares[idx]) {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
+      this.moveCounter++;
     }
 
     this.winner = this.calculateWinner();
+    this.isDrawCheck();
   }
 
   blockRestOfFields(){
@@ -97,6 +121,10 @@ export class BoardComponent implements OnInit {
         this.squares[a] === this.squares[b] &&
         this.squares[a] === this.squares[c]
       ) {
+        this.winningFields[a] = true;
+        this.winningFields[b] = true;
+        this.winningFields[c] = true;
+        this.subheadingSwitch = subheadingEnum.winner;
         this.blockRestOfFields();
         return this.squares[a];
       }
@@ -110,4 +138,10 @@ export enum X_or_O {
   O = 'O',
   empty = '',
   endOfGame = '-'
+}
+
+export enum subheadingEnum {
+ currentPlayer = 'currentPlayer',
+ winner = 'winner',
+ draw = 'draw'
 }

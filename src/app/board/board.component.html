@@ -1,7 +1,22 @@
 <div class="text-center">
   <h1 class="my-center">{{Title}}</h1>
-  <h2 *ngIf="!winner" class="my-center">Current Player: {{ player }}</h2>
-  <h2 *ngIf="winner" class="my-center">The Winner is: {{ winner }} !!!</h2>
+  <div [ngSwitch]="subheadingSwitch">
+    <h2
+    *ngSwitchCase="'currentPlayer'"
+    class="my-center">
+      Current Player: {{ player }}
+    </h2>
+    <h2
+    *ngSwitchCase="'winner'"
+    class="my-center">
+      The Winner is: {{ winner }} !!!
+    </h2>
+    <h2
+    *ngSwitchCase="'draw'"
+    class="my-center">
+      Draw!
+    </h2>
+  </div>
   <main class="my-center">
     <div class="grid-container">
       <app-square
@@ -13,7 +28,8 @@
         class="child-element"
         [ngClass]="[
         isClicked(i) ? '' : 'cursor-pointer',
-        shouldBeHighlighted(i) ? 'my-hover' : ''
+        shouldBeHighlighted(i) ? 'my-hover' : '',
+        isWinning(i) ? 'winning-background' : ''
         ]">
       </app-square>
     </div>
