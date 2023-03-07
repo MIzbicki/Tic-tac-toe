@@ -2,37 +2,39 @@
   <h1 class="my-center">{{Title}}</h1>
   <div [ngSwitch]="subheadingSwitch">
     <h2
-    *ngSwitchCase="'currentPlayer'"
-    class="my-center">
+      *ngSwitchCase="'currentPlayer'"
+      class="my-center">
       Current Player: {{ player }}
     </h2>
     <h2
-    *ngSwitchCase="'winner'"
-    class="my-center">
+      *ngSwitchCase="'winner'"
+      class="my-center">
       The Winner is: {{ winner }} !!!
     </h2>
     <h2
-    *ngSwitchCase="'draw'"
-    class="my-center">
+      *ngSwitchCase="'draw'"
+      class="my-center">
       Draw!
     </h2>
   </div>
   <main class="my-center">
-    <div class="grid-container">
-      <app-square
-        *ngFor="let item of squares; let i= index"
-        [value]="squares[i]"
-        (click)="makeMove(i)"
-        (mouseover)="ifAddHoverClass(i)"
-        (mouseleave)="removeAddHoverClass(i)"
-        (mouseup)="removeAddHoverClass(i)"
-        class="child-element"
-        [ngClass]="[
-        isClicked(i) ? '' : 'cursor-pointer',
-        shouldBeHighlighted(i) ? 'my-hover' : '',
-        isWinning(i) ? 'winning-background' : ''
-        ]">
-      </app-square>
+    <div class="board">
+      <div class="grid">
+        <app-square
+          *ngFor="let item of squares; let i= index"
+          [value]="squares[i]"
+          (click)="makeMove(i)"
+          (mouseover)="ifAddHoverClass(i)"
+          (mouseleave)="removeAddHoverClass(i)"
+          (mouseup)="removeAddHoverClass(i)"
+          class="child-element"
+          [ngClass]="[
+          isClicked(i) ? '' : 'cursor-pointer',
+          shouldBeHighlighted(i) ? 'my-hover' : '',
+          isWinning(i) ? 'winning-background' : ''
+          ]">
+        </app-square>
+      </div>
     </div>
   </main>
   <button class="btn btn-primary text-center" (click)="newGame()">New Game</button><br>
