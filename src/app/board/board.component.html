@@ -25,6 +25,7 @@
         (click)="makeMove(i)"
         (mouseover)="ifAddHoverClass(i)"
         (mouseleave)="removeAddHoverClass(i)"
+        (mouseup)="removeAddHoverClass(i)"
         class="child-element"
         [ngClass]="[
         isClicked(i) ? '' : 'cursor-pointer',
